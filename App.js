@@ -1,12 +1,25 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react"
+import {NativeRouter, Route, Routes} from "react-router-native"
+import { View, StyleSheet } from "react-native";
+
+//Route
+import HomePage from './view/HomePage';
+import FormProduct from "./view/FormProduct";
+
+//Header Footer
+import Footer from "./component/Footer";
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NativeRouter>
+      <View style={styles.container}>
+      <Routes>
+        <Route exact path="/" element={<HomePage/>}/>
+        <Route exact path="/form/product" element={<FormProduct/>}/>
+      </Routes>
+      </View>
+      <Footer/>
+    </NativeRouter>
   );
 }
 
@@ -16,5 +29,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    padding : 10
   },
 });
