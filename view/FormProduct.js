@@ -21,13 +21,13 @@ const Input = ({ name, control }) => {
 }
 
 export default function FormProduct() {
-    //initialisation valeur 
+    //initialisation valeur ******************************************************
     const [photo, setPhoto] = React.useState(null)
     const navigate = useNavigate()
 
     const { handleSubmit, control } = useForm()
 
-    //Initialisation fonction
+    //Initialisation fonction *****************************************************
     const onSubmit = data => {
         Alert.alert(JSON.stringify(data))
     }
