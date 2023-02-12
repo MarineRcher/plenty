@@ -1,5 +1,5 @@
 import React from "react"
-import { Button, TextInput, View, StyleSheet, Alert, Text } from "react-native"
+import { Button, TextInput, View, StyleSheet, Alert, Text, KeyboardAvoidingView, Platform, TouchableWithoutFeedback, Keyboard } from "react-native"
 import { useForm, useController } from "react-hook-form"
 import { useNavigate } from "react-router-native"
 import * as ImagePicker from "expo-image-picker"
@@ -34,10 +34,10 @@ export default function FormProduct() {
 
     const uploadImage = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({
-            mediaTypes : ImagePicker.MediaTypeOptions.All,
-            allowEditing : true,
-            aspect : [4,3],
-            quality : 1,
+            mediaTypes: ImagePicker.MediaTypeOptions.All,
+            allowEditing: true,
+            aspect: [4, 3],
+            quality: 1,
         })
 
         setPhoto(result)
@@ -48,36 +48,42 @@ export default function FormProduct() {
     }
 
     return (
-        <View>
-            <Button title='Ajouter une image' onPress={uploadImage} />
-            <View style={styles.inputContainer}>
-                <Text style={styles.inputTitle}>Nom du produit</Text>
-                <Input name="name" control={control} />
-            </View>
-            <View style={styles.inputContainer}>
-                <Text style={styles.inputTitle}>Magasin</Text>
-                <Input name="store" control={control} />
-            </View>
-            <View style={styles.inputContainer}>
-                <Text style={styles.inputTitle}>Prix</Text>
-                <Input name="price" control={control} />
-            </View>
-            <View style={styles.inputContainer}>
-                <Text style={styles.inputTitle}>Caractéristiques</Text>
-                <Input name="description" control={control} />
-            </View>
-            <View style={styles.containerButton}>
-                <Button
-                    title="Ajouter un produit"
-                    onPress={handleSubmit(onSubmit)}
-                />
-                <Button
-                    title="Retour"
-                    onPress={() => navigate('/')}
-                />
-            </View>
+        <KeyboardAvoidingView
+            behavior={Platform.OS === "ios" ? "padding" : "height"}
+        >
+            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+                <View>
+                    <Button title='Ajouter une image' onPress={uploadImage} />
+                    <View style={styles.inputContainer}>
+                        <Text style={styles.inputTitle}>Nom du produit</Text>
+                        <Input name="name" control={control} />
+                    </View>
+                    <View style={styles.inputContainer}>
+                        <Text style={styles.inputTitle}>Magasin</Text>
+                        <Input name="store" control={control} />
+                    </View>
+                    <View style={styles.inputContainer}>
+                        <Text style={styles.inputTitle}>Prix</Text>
+                        <Input name="price" control={control} />
+                    </View>
+                    <View style={styles.inputContainer}>
+                        <Text style={styles.inputTitle}>Caractéristiques</Text>
+                        <Input name="description" control={control} />
+                    </View>
+                    <View style={styles.containerButton}>
+                        <Button
+                            title="Ajouter un produit"
+                            onPress={handleSubmit(onSubmit)}
+                        />
+                        <Button
+                            title="Retour"
+                            onPress={() => navigate('/')}
+                        />
+                    </View>
+                </View>
+            </TouchableWithoutFeedback>
 
-        </View>
+        </KeyboardAvoidingView>
     )
 }
 
