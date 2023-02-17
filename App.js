@@ -18,6 +18,7 @@ export default function App() {
           <Route exact path="/" element={<HomePage />} />
           <Route exact path="/form/product" element={<FormProduct />} />
           <Route exact path="/products" element={<DisplayProducts />} />
+          <Route exact path="/products/#fruitNvegetable" element={<DisplayProducts />} />
         </Routes>
       </View>
       <Footer />

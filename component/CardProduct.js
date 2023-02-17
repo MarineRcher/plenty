@@ -3,7 +3,6 @@ import { View, StyleSheet, Image, Text } from "react-native"
 
 
 export const CardProduct = props => {
-    console.log(props)
     return (
         <View style={styles.container}>
             <Image style={styles.image} source={{ uri: props.image }} />

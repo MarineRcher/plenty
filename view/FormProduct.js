@@ -1,8 +1,12 @@
-import React from "react"
-import { Button, TextInput, View, StyleSheet, Alert, Text, KeyboardAvoidingView, Platform, TouchableWithoutFeedback, Keyboard } from "react-native"
+import React, { useState } from "react"
+import { Button, TextInput, View, StyleSheet, Alert, Text, KeyboardAvoidingView, Platform, TouchableWithoutFeedback, Keyboard, Picker } from "react-native"
 import { useForm, useController } from "react-hook-form"
 import { useNavigate } from "react-router-native"
 import * as ImagePicker from "expo-image-picker"
+import DropDownPicker from "react-native-dropdown-picker"
+
+//import data
+import { product } from "../data"
 
 //Initialisation d'un input pour une utilisation simple de react-hook-form
 const Input = ({ name, control }) => {
@@ -23,13 +27,22 @@ const Input = ({ name, control }) => {
 export default function FormProduct() {
     //initialisation valeur ******************************************************
     const [photo, setPhoto] = React.useState(null)
+    const [selectedTags, setSelectedTags] = useState()
+    const [open, setOpen] = useState(false)
+    const [items, setItems] = useState(product)
     const navigate = useNavigate()
 
     const { handleSubmit, control } = useForm()
 
     //Initialisation fonction *****************************************************
     const onSubmit = data => {
-        Alert.alert(JSON.stringify(data))
+        const sentData = {
+            name : data.name, 
+            store : data.store,
+            price : data.price, 
+            tag : selectedTags
+        }
+        Alert.alert(JSON.stringify(sentData))
     }
 
     const uploadImage = async () => {
@@ -67,8 +80,16 @@ export default function FormProduct() {
                         <Input name="price" control={control} />
                     </View>
                     <View style={styles.inputContainer}>
-                        <Text style={styles.inputTitle}>Caractéristiques</Text>
-                        <Input name="description" control={control} />
+                        <DropDownPicker
+                            open={open}
+                            style={{ marginBottom: 20 }}
+                            value={selectedTags}
+                            items={items}
+                            setOpen={setOpen}
+                            setValue={setSelectedTags}
+                            setItems={setItems}
+                            containerStyle={{backgroundColor : "white"}}
+                        />
                     </View>
                     <View style={styles.containerButton}>
                         <Button
@@ -106,7 +127,8 @@ const styles = StyleSheet.create({
     containerButton: {
         display: "flex",
         flexDirection: "column",
-        justifyContent: "space-around"
+        justifyContent: "space-around",
+        zIndex : -5
     }
 
 })
