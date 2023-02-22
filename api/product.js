@@ -1,36 +1,29 @@
 //Page qui permet de faire des requêtes en rapport avec les produits
-
+import axios from 'axios'
 
 //GET*******************************************************
 //Permet de récupérer tous les produits
 export const getProducts = async () => {
-    const url = process.env.BASE_URL + "product"
+    const url = "http://172.20.10.2:3000/products/"
     try {
-        const response = await fetch(url, {
-            method: "GET",
-            headers: {
-                "Accept": "application/json",
-                "Content-type": "applciation/json"
-            }
-        })
-        return response
+        // const response = await fetch(url, {
+        //     method: "GET",
+        //     headers: {
+        //         "Accept": "application/json",
+        //         "Content-type": "application/json"
+        //     }
+        // })
+        // return JSON.stringify(response)
+        const response = await axios.get(url)
+        return response.data
     } catch (err) {
         console.log(err)
     }
 }
 
-export const getProductsLocal = () => {
-    const products = [
-        { name: "lait", image: "https://media.auchan.fr/A0219950623000018801PRIMARY_2048x2048/B2CD/", magasin: "Lidl", prix: 0.75, tags: ["produits laitiers"] },
-        { name: "confiture à la fraise", image: "https://www.bonnemaman.ch/uploads/catalogues_price_image/confiturePackaging-fraise.jpg", magasin: "Aldi", prix: 0.99, tags: ["divers"] }
-    ]
-
-    return products
-}
-
 //Permet de récupérer un produit avec son id 
 export const getProductById = async (id) => {
-    const url = process.env.BASE_URL + "product/" + id
+    const url = process.env.BASE_URL + "products/" + id
     try {
         const response = await fetch(url, {
             method: "GET",
@@ -48,7 +41,7 @@ export const getProductById = async (id) => {
 //POST ***************************************************
 //Permet de rajouter une recette
 export const addProduct = async (data) => {
-    const url = process.env.BASE_URL + "product/"
+    const url = process.env.BASE_URL + "products/"
     try {
         const response = await fetch(url, {
             method: "POST",

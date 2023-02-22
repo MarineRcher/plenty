@@ -4,6 +4,7 @@ import { useForm, useController } from "react-hook-form"
 import { useNavigate } from "react-router-native"
 import * as ImagePicker from "expo-image-picker"
 import DropDownPicker from "react-native-dropdown-picker"
+import axios from "axios"
 
 //import data
 import { product } from "../data"
@@ -37,12 +38,19 @@ export default function FormProduct() {
     //Initialisation fonction *****************************************************
     const onSubmit = data => {
         const sentData = {
-            name : data.name, 
-            store : data.store,
-            price : data.price, 
-            tag : selectedTags
+            name: data.name,
+            image: data.image || "",
+            price: data.price,
+            store: data.store,
+            tag: selectedTags
         }
         Alert.alert(JSON.stringify(sentData))
+        axios.post("http://172.20.10.2:3000/products", sentData,
+            {
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
     }
 
     const uploadImage = async () => {
@@ -68,6 +76,10 @@ export default function FormProduct() {
                 <View>
                     <Button title='Ajouter une image' onPress={uploadImage} />
                     <View style={styles.inputContainer}>
+                        <Text style={styles.inputTitle}>Mettre l'url d'une image</Text>
+                        <Input name="image" control={control} />
+                    </View>
+                    <View style={styles.inputContainer}>
                         <Text style={styles.inputTitle}>Nom du produit</Text>
                         <Input name="name" control={control} />
                     </View>
@@ -88,7 +100,7 @@ export default function FormProduct() {
                             setOpen={setOpen}
                             setValue={setSelectedTags}
                             setItems={setItems}
-                            containerStyle={{backgroundColor : "white"}}
+                            containerStyle={{ backgroundColor: "white" }}
                         />
                     </View>
                     <View style={styles.containerButton}>
@@ -128,7 +140,7 @@ const styles = StyleSheet.create({
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-around",
-        zIndex : -5
+        zIndex: -5
     }
 
 })

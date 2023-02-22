@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import axios from 'axios'
 import { View, Text, StyleSheet, Alert } from 'react-native'
 import { useNavigate, useLocation } from 'react-router-native'
 import DropDownPicker from 'react-native-dropdown-picker'
@@ -7,21 +8,48 @@ import DropDownPicker from 'react-native-dropdown-picker'
 import { CardProduct } from '../component/CardProduct'
 
 //import de l'api 
-import { getProducts, getProductsLocal } from '../api/product'
+import { getProducts } from '../api/product'
 
 //import data
 import { product } from '../data'
 
 export default function DisplayProducts(props) {
     const location = useLocation()
-    const [productList, setProductList] = useState([
-        { name: "lait", image: "https://media.auchan.fr/A0219950623000018801PRIMARY_2048x2048/B2CD/", store: "Lidl", price: 0.75, tag: "produits laitiers" },
-        { name: "confiture à la fraise", image: "https://www.bonnemaman.ch/uploads/catalogues_price_image/confiturePackaging-fraise.jpg", store: "Aldi", price: 0.99, tag: "divers" },
-        { name: "carrote", image: "https://www.bonnemaman.ch/uploads/catalogues_price_image/confiturePackaging-fraise.jpg", store: "Aldi", price: 0.99, tag: "vegetables" }
-    ])
+    const [productList, setProductList] = useState([])
     const [selectedTags, setSelectedTags] = useState(location.state !== null ? location.state.tags : [])
     const [open, setOpen] = useState(false)
     const [items, setItems] = useState(product)
+
+    //initalisation fonction 
+    const getProducts = async () => {
+        const url = "http://172.20.10.2:3000/products/"
+        try {
+            // const response = await fetch(url, {
+            //     method: "GET",
+            //     headers: {
+            //         "Accept": "application/json",
+            //         "Content-type": "application/json"
+            //     }
+            // })
+            // return JSON.stringify(response)
+            const response = await axios.get(url)
+            console.log(response.data)
+            setProductList(response.data)
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
+    useEffect(() => {
+        // const url = "http://172.20.10.2:3000/products/"
+        // axios.get(url)
+        //     .then(res => {
+        //         console.log(res)
+        //         console.log("oui")
+        //         setProductList(res)
+        //     })
+        getProducts()
+    }, [])
 
     return (
         <View style={styles.container}>
@@ -38,10 +66,11 @@ export default function DisplayProducts(props) {
                 setItems={setItems}
             />
             <Text>Retrouver ici tous nos produits les moins chers</Text>
+
             {productList.map((product, key) => {
                 return selectedTags.length === 0 ? (
                     <CardProduct
-                        image={product.image}
+                        image={product.image || ""}
                         name={product.name}
                         store={product.store}
                         price={product.price}
