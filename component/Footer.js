@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity, Keyboard } from "react-native
 import { useNavigate } from 'react-router-native'
 //style
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-import { faHouse, faUser, faGear } from '@fortawesome/free-solid-svg-icons'
+import { faHouse, faUser, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 
 export default function Footer() {
     //intialisation des valeurs de bases
@@ -47,10 +47,10 @@ export default function Footer() {
                         />
                     </TouchableOpacity>
                     <TouchableOpacity
-                        onPress={() => navigate('/')}>
+                        onPress={() => navigate('/search')}>
                         <FontAwesomeIcon
                             size={40}
-                            icon={faGear}
+                            icon={faMagnifyingGlass}
                             style={styles.icons} />
                     </TouchableOpacity >
                 </View>
@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "space-between",
         alignContent: "center",
-        marginBottom : 20,
+        marginBottom: 20,
     },
     icons: {
     }

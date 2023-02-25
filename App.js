@@ -6,6 +6,7 @@ import { View, StyleSheet } from "react-native";
 import HomePage from './view/HomePage';
 import FormProduct from "./view/FormProduct";
 import DisplayProducts from "./view/DisplayProducts";
+import Search from "./view/Search";
 
 //Header Footer
 import Footer from "./component/Footer";
@@ -19,6 +20,9 @@ export default function App() {
           <Route exact path="/form/product" element={<FormProduct />} />
           <Route exact path="/products" element={<DisplayProducts />} />
           <Route exact path="/products/#fruitNvegetable" element={<DisplayProducts />} />
+          <Route exact path="/products/#meat" element={<DisplayProducts />} />
+          <Route exact path="/products/#divers" element={<DisplayProducts />} />
+          <Route exact path="/search" element={<Search />} />
         </Routes>
       </View>
       <Footer />
