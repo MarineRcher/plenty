@@ -1,4 +1,3 @@
-
 import { useNavigate } from "react-router-native"
 import React, { useState } from 'react';
 import { Text, View, StyleSheet, Image, TextInput, ScrollView } from 'react-native';
@@ -6,9 +5,10 @@ import Logo from '../assets/image/Logo.png';
 import CustomInput from '../component/CustomInput';
 import CustomButton from '../component/CustomButton';
 
-const SignIn = () => {
+const ResetPassword = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [passwordRepeat, setPasswordRepeat] = useState('');
 
 
     const onSignInPressed = () => {
@@ -16,7 +16,7 @@ const SignIn = () => {
     }
 
     const onForgotPasswordPressed = () => {
-        navigate('/connexion/resetpassword');
+        navigate('/connexion/ResetPassword');
     }
 
     const onSignInGoogle = () => {
@@ -24,7 +24,7 @@ const SignIn = () => {
     }
 
     const onSignUpPress = () => {
-        navigate('/connexion/inscription');
+        navigate('/connexion/inscription');  
     }
 
     const navigate = useNavigate();
@@ -44,23 +44,16 @@ const SignIn = () => {
                     placeholder="Mot de passe"
                     value={password}
                     setValue={setPassword}
-                    secureTextEntry={true}
+                />
+                <CustomInput
+                    placeholder="Confirmation mot de passe"
+                    value={passwordRepeat}
+                    setValue={setPasswordRepeat}
                 />
 
                 <CustomButton
-                    text="Connexion"
+                    text="Changer de mot de passe"
                     onPress={onSignInPressed}
-                />
-
-                <CustomButton
-                    text="Mot de passe oublié"
-                    onPress={onForgotPasswordPressed}
-                    type="TIERT"
-                />
-
-                <CustomButton
-                    text="Se connecter avec Google"
-                    onPress={onSignInGoogle}
                 />
 
                 <CustomButton
@@ -90,4 +83,4 @@ const styles = StyleSheet.create({
 
 });
 
-export default SignIn
+export default ResetPassword
