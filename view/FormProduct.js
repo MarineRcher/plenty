@@ -45,7 +45,7 @@ export default function FormProduct() {
             tag: selectedTags
         }
         Alert.alert(JSON.stringify(sentData))
-        axios.post("http://172.20.10.2:3000/products", sentData,
+        axios.post("http://51.195.44.176:3001/products", sentData,
             {
                 headers: {
                     "Content-Type": "application/json"

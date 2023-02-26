@@ -22,16 +22,8 @@ export default function DisplayProducts(props) {
 
     //initalisation fonction 
     const getProducts = async () => {
-        const url = "http://172.20.10.2:3000/products/"
+        const url = "http://51.195.44.176:3001/products/"
         try {
-            // const response = await fetch(url, {
-            //     method: "GET",
-            //     headers: {
-            //         "Accept": "application/json",
-            //         "Content-type": "application/json"
-            //     }
-            // })
-            // return JSON.stringify(response)
             const response = await axios.get(url)
             console.log(response.data)
             setProductList(response.data)
@@ -41,13 +33,6 @@ export default function DisplayProducts(props) {
     }
 
     useEffect(() => {
-        // const url = "http://172.20.10.2:3000/products/"
-        // axios.get(url)
-        //     .then(res => {
-        //         console.log(res)
-        //         console.log("oui")
-        //         setProductList(res)
-        //     })
         getProducts()
     }, [])
 

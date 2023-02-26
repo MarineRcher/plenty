@@ -4,7 +4,7 @@ import axios from 'axios'
 //GET*******************************************************
 //Permet de récupérer tous les produits
 export const getProducts = async () => {
-    const url = "http://172.20.10.2:3000/products/"
+    const url = "http://51.195.44.176:3001/products/"
     try {
         // const response = await fetch(url, {
         //     method: "GET",
