@@ -55,6 +55,7 @@ export default function Search() {
                                     name={product.name}
                                     store={product.store}
                                     price={product.price}
+                                    getProducts={getProducts()}
                                 />
                             ))}
                         </View>

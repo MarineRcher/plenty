@@ -61,6 +61,7 @@ export default function DisplayProducts(props) {
                         name={product.name}
                         store={product.store}
                         price={product.price}
+                        getProducts={getProducts()}
                     />
                 ) : (
                     selectedTags.map((tag, key) => {
@@ -72,6 +73,7 @@ export default function DisplayProducts(props) {
                                 name={product.name}
                                 store={product.store}
                                 price={product.price}
+                                getProducts={getProducts()}
                             />
                         ) : null
 
