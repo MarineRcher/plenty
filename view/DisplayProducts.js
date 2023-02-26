@@ -55,6 +55,8 @@ export default function DisplayProducts(props) {
             {productList.map((product, key) => {
                 return selectedTags.length === 0 ? (
                     <CardProduct
+                        id={product.id}
+                        reports={product.reports}
                         image={product.image || ""}
                         name={product.name}
                         store={product.store}
@@ -64,6 +66,8 @@ export default function DisplayProducts(props) {
                     selectedTags.map((tag, key) => {
                         return tag === product.tag ? (
                             <CardProduct
+                                id={product.id}
+                                reports={product.reports}
                                 image={product.image}
                                 name={product.name}
                                 store={product.store}

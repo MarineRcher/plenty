@@ -108,10 +108,6 @@ export default function FormProduct() {
                             title="Ajouter un produit"
                             onPress={handleSubmit(onSubmit)}
                         />
-                        <Button
-                            title="Retour"
-                            onPress={() => navigate('/')}
-                        />
                     </View>
                 </View>
             </TouchableWithoutFeedback>

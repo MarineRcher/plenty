@@ -1,11 +1,21 @@
 import React from "react"
-import { View, StyleSheet, Image, Text, TouchableOpacity } from "react-native"
+import { View, StyleSheet, Image, Text, TouchableOpacity, Alert } from "react-native"
+import axios from 'axios'
 
 //style
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome"
 import { faExclamation } from "@fortawesome/free-solid-svg-icons"
 
 export const CardProduct = props => {
+    const addReport = async (id) => {
+        if (props.reports + 1 < 5) {
+            axios.put("http://51.195.44.176:3001/products/reports/" + id)
+            Alert.alert("Votre signalement a bien été pris en compte")
+        } else if (props.reponse === 5) {
+            axios.delete("http://51.195.44.176:3001/products/" + id)
+            Alert.alert("Votre signalement a bien été pris en compte, l'article sera supprimé")
+        }
+    }
     return (
         <View style={styles.container}>
             <Image style={styles.image} source={{ uri: props.image }} />
@@ -14,7 +24,7 @@ export const CardProduct = props => {
                 <Text>{props.store}</Text>
                 <Text>{props.price}</Text>
             </View>
-            <TouchableOpacity style={styles.signal}>
+            <TouchableOpacity style={styles.signal} onPress={() => addReport(props.id)}>
                 <FontAwesomeIcon
                     size={30}
                     icon={faExclamation}

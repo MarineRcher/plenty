@@ -5,6 +5,9 @@ import axios from "axios"
 //import image
 import searchImage from '../assets/searchImage.png'
 
+//import component
+import { CardProduct } from '../component/CardProduct'
+
 export default function Search() {
     //initialisation valeur
     const [name, setName] = useState("")
@@ -12,14 +15,11 @@ export default function Search() {
 
     //initialisation fonction 
     const getProducts = async (name) => {
-        const response = await axios.get("" + name)
-        setProductList(response)
+        const response = await axios.get("http://51.195.44.176:3001/products/" + name)
+        console.log(response.data)
+        setProductList(response.data)
     }
 
-    //initialisation useEffect
-    useEffect(() => {
-        getProducts(name)
-    }, [name])
     return (
         <View>
             <View style={styles.searchBar}>
@@ -31,11 +31,11 @@ export default function Search() {
                 />
                 <Button
                     title="Search"
-                    onPress={() => console.log('oui')}
+                    onPress={() => getProducts()}
                 >
                     Chercher</Button>
             </View>
-            {productList.length === 0 ? (
+            {productList.length === 0 && name === "" ? (
                 <View>
                     <Image
                         style={styles.image}
@@ -44,7 +44,24 @@ export default function Search() {
                     <Text style={{ textAlign: "center" }}>Rechercher tous les produits par leur nom</Text>
                 </View>
             ) : (
-                null
+                <View>
+                    {productList !== "" || productList.length !== 0 ? (
+                        <View>
+                            {productList.map((product, key) => (
+                                <CardProduct
+                                    id={product.id}
+                                    reports={product.reports}
+                                    image={product.image}
+                                    name={product.name}
+                                    store={product.store}
+                                    price={product.price}
+                                />
+                            ))}
+                        </View>
+                    ) : (
+                        <Text>Aucun résulat ....</Text>
+                    )}
+                </View>
             )}
 
         </View>

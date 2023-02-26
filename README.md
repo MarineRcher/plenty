@@ -7,9 +7,10 @@
     npm start
 ```
 
-### Make request to api 
-We want to go futher in our idea of application. However it's only the beginning meaning our API REST is locally launch on our computer. So in order to make request possible, you have to launch our api in your computer and put your ip address (for exemple http://172.20.10.2:3000/) instead of http://localhost:3000/. 
+### What you can do with our app
 
-You have to make the change on thoses files :
-- DisplayProduct in View
-- FormProduct in View
+- Add product 
+- Display all the products
+- Report a product if you can find it anymore, when a product gets 5 reports it gets deleted
+- Search a product by his name
+- Only display product with selected tags
