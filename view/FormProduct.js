@@ -9,6 +9,9 @@ import axios from "axios"
 //import data
 import { product } from "../data"
 
+//import component
+import CustomButton from "../component/CustomButton"
+
 //Initialisation d'un input pour une utilisation simple de react-hook-form
 const Input = ({ name, control }) => {
     const { field } = useController({
@@ -53,28 +56,12 @@ export default function FormProduct() {
             })
     }
 
-    const uploadImage = async () => {
-        let result = await ImagePicker.launchImageLibraryAsync({
-            mediaTypes: ImagePicker.MediaTypeOptions.All,
-            allowEditing: true,
-            aspect: [4, 3],
-            quality: 1,
-        })
-
-        setPhoto(result)
-
-        if (!result.canceled) {
-            setImage(result.assets[0].uri)
-        }
-    }
-
     return (
         <KeyboardAvoidingView
             behavior={Platform.OS === "ios" ? "padding" : "height"}
         >
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-                <View>
-                    <Button title='Ajouter une image' onPress={uploadImage} />
+                <View style={styles.container}>
                     <View style={styles.inputContainer}>
                         <Text style={styles.inputTitle}>Mettre l'url d'une image</Text>
                         <Input name="image" control={control} />
@@ -104,8 +91,8 @@ export default function FormProduct() {
                         />
                     </View>
                     <View style={styles.containerButton}>
-                        <Button
-                            title="Ajouter un produit"
+                        <CustomButton
+                            text="Ajouter un produit"
                             onPress={handleSubmit(onSubmit)}
                         />
                     </View>
@@ -118,9 +105,13 @@ export default function FormProduct() {
 
 //style
 const styles = StyleSheet.create({
+    container : {
+        display : "flex",
+        alignItems :"center"
+    },
     inputContainer: {
         margin: 10,
-        width: 200,
+        width: "60%",
     },
     inputTitle: {
         margin: 3
@@ -136,7 +127,9 @@ const styles = StyleSheet.create({
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-around",
-        zIndex: -5
+        zIndex: -5,
+        width : "70%",
+        alignItems : "center"
     }
 
 })

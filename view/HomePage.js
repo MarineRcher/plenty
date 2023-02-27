@@ -1,7 +1,9 @@
 import React from "react"
-import { View, Text, ImageBackground, StyleSheet, Button, TouchableOpacity } from "react-native"
+import { View, Text, ImageBackground, StyleSheet, TouchableOpacity } from "react-native"
 import { useNavigate } from "react-router-native"
 
+//import component
+import CustomButton from "../component/CustomButton"
 
 export default function HomePage() {
     const navigate = useNavigate()
@@ -33,7 +35,7 @@ export default function HomePage() {
                     </TouchableOpacity>
                 </View>
             </View>
-            <Button title="Ajouter un produit" onPress={() => navigate('/form/product')}></Button>
+            <CustomButton text="Ajouter un produit" onPress={() => navigate('/form/product')} />
         </View >
     )
 }

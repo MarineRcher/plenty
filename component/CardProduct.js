@@ -11,11 +11,11 @@ export const CardProduct = props => {
         if (props.reports + 1 < 5) {
             axios.put("http://51.195.44.176:3001/products/reports/" + id)
             Alert.alert("Votre signalement a bien été pris en compte")
-            props.getProduct()
+            //props.getProduct()
         } else if (props.reponse === 5) {
             axios.delete("http://51.195.44.176:3001/products/" + id)
             Alert.alert("Votre signalement a bien été pris en compte, l'article sera supprimé")
-            props.getProduct()
+            //props.getProduct()
         }
     }
     return (
