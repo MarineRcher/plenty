@@ -1,16 +1,21 @@
 
 import { useNavigate } from "react-router-native"
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Text, View, StyleSheet, TextInput, ScrollView } from 'react-native';
 import Logo from '../assets/image/Logo.png';
 import CustomInput from '../component/CustomInput';
 import CustomButton from '../component/CustomButton';
+import { addUsers } from "../api/users";
 
 const SignUp = () => {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [passwordRepeat, setPasswordRepeat] = useState('');
+
+    const [users, setUsers] = useState('')
+
+    
 
     const onSignInPressed = () => {
         console.warn("Remplissez vos identifiants");
@@ -28,7 +33,17 @@ const SignUp = () => {
         console.warn('onSignUpPress');
     }
 
+    const addUser = async () => {
+        const responseAddUser = await addUsers()
+        setUsers(responseAddUser)
+    }
+
+    useEffect(() => {
+        addUser()
+    }, [])
+
     const navigate = useNavigate();
+
     return (
         <ScrollView>
             <View style={styles.root}>

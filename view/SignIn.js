@@ -1,15 +1,17 @@
 
 import { useNavigate } from "react-router-native"
-import React, { useState } from 'react';
-import { Text, View, StyleSheet, Image, TextInput, ScrollView } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { Text, View, StyleSheet, Image, ScrollView } from 'react-native';
 import Logo from '../assets/image/Logo.png';
 import CustomInput from '../component/CustomInput';
 import CustomButton from '../component/CustomButton';
+import { getUsers } from "../api/users";
 
 const SignIn = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
+    const [users, setUsers] = useState([]);
 
     const onSignInPressed = () => {
         console.warn("Remplissez vos identifiants");
@@ -28,6 +30,17 @@ const SignIn = () => {
     }
 
     const navigate = useNavigate();
+
+    const getListUsers = async () => { 
+        const responseListUsers = await getUsers() 
+        setUsers(responseListUsers)
+
+    }
+
+    useEffect(() => {
+         getListUsers()
+        }, [] )
+
     return (
         <ScrollView>
             <View style={styles.root}>
@@ -44,7 +57,7 @@ const SignIn = () => {
                     placeholder="Mot de passe"
                     value={password}
                     setValue={setPassword}
-                    secureTextEntry={true}
+                   
                 />
 
                 <CustomButton
@@ -86,7 +99,6 @@ const styles = StyleSheet.create({
         maxHeight: 200,
         margin: 60,
     },
-
 
 });
 

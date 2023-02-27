@@ -4,12 +4,14 @@ import { Text, View, StyleSheet, Image, TextInput, ScrollView } from 'react-nati
 import Logo from '../assets/image/Logo.png';
 import CustomInput from '../component/CustomInput';
 import CustomButton from '../component/CustomButton';
+import { updateUser } from "../api/users";
 
 const ResetPassword = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [passwordRepeat, setPasswordRepeat] = useState('');
 
+    const [users, setUsers] = useState('')
 
     const onSignInPressed = () => {
         console.warn("Remplissez vos identifiants");
@@ -26,6 +28,17 @@ const ResetPassword = () => {
     const onSignUpPress = () => {
         navigate('/connexion/inscription');  
     }
+
+    const upUsersPassword = async () => { 
+        const responseListUsers = await updateUser() 
+        setUsers(responseListUsers)
+
+    }
+
+    useEffect(() => {
+        upUsersPassword()
+        }, [] )
+
 
     const navigate = useNavigate();
     return (
