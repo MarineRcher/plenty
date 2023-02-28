@@ -1,4 +1,4 @@
-import React from "react"
+import React from "react";
 import { View, Text, ImageBackground, StyleSheet, TouchableOpacity } from "react-native"
 import { useNavigate } from "react-router-native"
 
@@ -23,7 +23,7 @@ export default function HomePage() {
                             <Text style={styles.text}>Fruits/légumes</Text>
                         </ImageBackground>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => navigate('/products/#meat', { state: { tags: ["meats"] } })}>
+                    <TouchableOpacity onPress={() => navigate('/products/#meats', { state: { tags: ["meats"] } })}>
                         <ImageBackground style={{ borderRadius: 2, borderWidth: 0.7, height: 87, marginBottom: 4 }} source={{ uri: "https://media.istockphoto.com/id/1288461867/fr/photo/vari%C3%A9t%C3%A9-de-steaks-de-viande-crue.jpg?b=1&s=612x612&w=0&k=20&c=jmFYb4IZgB2wxRFOg7RbeLsRhtWiR2HIGO7Ja05muKw=" }}>
                             <Text style={styles.text}>Viandes</Text>
                         </ImageBackground>
@@ -80,4 +80,4 @@ const styles = StyleSheet.create({
         paddingTop: 30,
         textAlign: "center",
     },
-})
+});
