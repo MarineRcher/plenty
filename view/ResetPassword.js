@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-native"
-import React, { useState } from 'react';
+
+import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, Image, TextInput, ScrollView } from 'react-native';
 import Logo from '../assets/image/Logo.png';
 import CustomInput from '../component/CustomInput';
@@ -13,7 +14,7 @@ const ResetPassword = () => {
 
     const [users, setUsers] = useState('')
 
-   
+
 
     const onForgotPasswordPressed = () => {
         navigate('/connexion/ResetPassword');
@@ -24,18 +25,18 @@ const ResetPassword = () => {
     }
 
     const onSignUpPress = () => {
-        navigate('/connexion/inscription');  
+        navigate('/connexion/inscription');
     }
 
-    const upUsersPassword = async () => { 
-        const responseListUsers = await updateUser() 
+    const upUsersPassword = async () => {
+        const responseListUsers = await updateUser()
         setUsers(responseListUsers)
 
     }
 
     useEffect(() => {
         upUsersPassword()
-        }, [] )
+    }, [])
 
 
     const navigate = useNavigate();
@@ -65,8 +66,8 @@ const ResetPassword = () => {
 
                 <CustomButton
                     text="Changer de mot de passe"
-                    onPress={() => upUsersPassword() }
-                    />
+                    onPress={() => upUsersPassword()}
+                />
 
                 <CustomButton
                     text="Vous n'avez pas de compte ? Inscivez-vous"
