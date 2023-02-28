@@ -56,3 +56,21 @@ export const addProduct = async (data) => {
         console.log(err)
     }
 }
+
+//PUT**********************************************
+//ajouter un signalement
+export const addReport = async (id) => {
+    const url = "http://51.195.44.176:3001/products/report/" + id
+    try {
+        const response = fetch(url, {
+            method: "PUT",
+            headers: {
+                "Accept": "application/json",
+                "Content-type": "applciation/json"
+            },
+        })
+        return await response.json()
+    } catch (err) {
+        console.log(err)
+    }
+}
