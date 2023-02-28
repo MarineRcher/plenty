@@ -11,7 +11,7 @@ import { addReport } from "../api/product"
 
 export const CardProduct = props => {
     const addReport = async (id) => {
-        if (props.reports + 1 < 5) {
+        if (props.reports < 5) {
             try {
                 axios.put("http://51.195.44.176:3001/products/report/" + id)
                 Alert.alert("Votre signalement a bien été pris en compte")
@@ -21,7 +21,7 @@ export const CardProduct = props => {
             //addReport(id)
 
             //props.getProduct()
-        } else if (props.reports === 5) {
+        } else if (props.reports >= 5) {
             axios.delete("http://51.195.44.176:3001/products/" + id)
             Alert.alert("Votre signalement a bien été pris en compte, l'article sera supprimé")
             //props.getProduct()
@@ -33,7 +33,7 @@ export const CardProduct = props => {
             <View style={styles.column}>
                 <Text>{props.name}</Text>
                 <Text>{props.store}</Text>
-                <Text>{props.price} €</Text>
+                <Text>{props.price.toFixed(2)} €</Text>
             </View>
             <TouchableOpacity style={styles.signal} onPress={() => addReport(props.id)}>
                 <FontAwesomeIcon

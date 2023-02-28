@@ -88,6 +88,7 @@ export default function FormProduct() {
                             setValue={setSelectedTags}
                             setItems={setItems}
                             containerStyle={{ backgroundColor: "white" }}
+                            placeholder="Catégories"
                         />
                     </View>
                     <View style={styles.containerButton}>

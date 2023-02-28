@@ -30,7 +30,7 @@ export default function Search() {
                     placeholder="Votre recherche ...."
                 />
                 <Button
-                    title="Search"
+                    title="Chercher"
                     onPress={() => getProducts()}
                 >
                     Chercher</Button>
@@ -60,7 +60,7 @@ export default function Search() {
                             ))}
                         </View>
                     ) : (
-                        <Text>Aucun résulat ....</Text>
+                        <Text>Aucun résultat ....</Text>
                     )}
                 </View>
             )}
