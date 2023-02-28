@@ -15,7 +15,7 @@ export default function Search() {
 
     //initialisation fonction 
     const getProducts = async (name) => {
-        const response = await axios.get("http://51.195.44.176:3001/products/" + name)
+        const response = await axios.get("http://51.195.44.176:3001/products/search/" + name)
         console.log(response.data)
         setProductList(response.data)
     }

@@ -47,13 +47,13 @@ export default function FormProduct() {
             store: data.store,
             tag: selectedTags
         }
-        Alert.alert(JSON.stringify(sentData))
         axios.post("http://51.195.44.176:3001/products", sentData,
             {
                 headers: {
                     "Content-Type": "application/json"
                 }
             })
+        Alert.alert("Votre produit a bien été enregistré")
     }
 
     return (
@@ -105,9 +105,9 @@ export default function FormProduct() {
 
 //style
 const styles = StyleSheet.create({
-    container : {
-        display : "flex",
-        alignItems :"center"
+    container: {
+        display: "flex",
+        alignItems: "center"
     },
     inputContainer: {
         margin: 10,
@@ -128,8 +128,8 @@ const styles = StyleSheet.create({
         flexDirection: "column",
         justifyContent: "space-around",
         zIndex: -5,
-        width : "70%",
-        alignItems : "center"
+        width: "70%",
+        alignItems: "center"
     }
 
 })
