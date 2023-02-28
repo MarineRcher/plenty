@@ -2,7 +2,6 @@
 import { useNavigate } from "react-router-native"
 import React, { useEffect, useState } from 'react';
 import { Text, View, StyleSheet, TextInput, ScrollView } from 'react-native';
-import Logo from '../assets/image/Logo.png';
 import CustomInput from '../component/CustomInput';
 import CustomButton from '../component/CustomButton';
 import { addUsers } from "../api/users";
@@ -13,33 +12,23 @@ const SignUp = () => {
     const [password, setPassword] = useState('');
     const [passwordRepeat, setPasswordRepeat] = useState('');
 
-    const [users, setUsers] = useState('')
+    const [users, setUsers] = useState(null);
 
     
-
-    const onSignInPressed = () => {
-        console.warn("Remplissez vos identifiants");
-    }
-
-    const onForgotPasswordPressed = () => {
-        console.warn("onForgotPasswordPressed");
-    }
 
     const onSignInGoogle = () => {
         console.warn('onSignInGoogle');
     }
 
-    const onSignUpPress = () => {
-        console.warn('onSignUpPress');
-    }
+    const onSignUpPress = async () => { 
+      const sentUsers =  await addUsers()
+        setUsers(sentUsers)
 
-    const addUser = async () => {
-        const responseAddUser = await addUsers()
-        setUsers(responseAddUser)
+       
     }
 
     useEffect(() => {
-        addUser()
+     
     }, [])
 
     const navigate = useNavigate();
@@ -74,7 +63,7 @@ const SignUp = () => {
 
                 <CustomButton
                     text="Inscription"
-                    onPress={onSignInPressed}
+                    onPress={() => onSignUpPress() }
                 />
 
                 <CustomButton

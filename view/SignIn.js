@@ -6,6 +6,7 @@ import Logo from '../assets/image/Logo.png';
 import CustomInput from '../component/CustomInput';
 import CustomButton from '../component/CustomButton';
 import { getUsers } from "../api/users";
+import axios from 'axios'
 
 const SignIn = () => {
     const [username, setUsername] = useState('');

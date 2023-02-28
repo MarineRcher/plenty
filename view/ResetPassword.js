@@ -13,9 +13,7 @@ const ResetPassword = () => {
 
     const [users, setUsers] = useState('')
 
-    const onSignInPressed = () => {
-        console.warn("Remplissez vos identifiants");
-    }
+   
 
     const onForgotPasswordPressed = () => {
         navigate('/connexion/ResetPassword');
@@ -41,6 +39,7 @@ const ResetPassword = () => {
 
 
     const navigate = useNavigate();
+
     return (
         <ScrollView>
             <View style={styles.root}>
@@ -66,8 +65,8 @@ const ResetPassword = () => {
 
                 <CustomButton
                     text="Changer de mot de passe"
-                    onPress={onSignInPressed}
-                />
+                    onPress={() => upUsersPassword() }
+                    />
 
                 <CustomButton
                     text="Vous n'avez pas de compte ? Inscivez-vous"
