@@ -39,7 +39,7 @@ export default function Footer() {
                         />
                     </TouchableOpacity>
                     <TouchableOpacity
-                        onPress={() => navigate('/')}>
+                        onPress={() => navigate('/connexion')}>
                         <FontAwesomeIcon
                             size={40}
                             icon={faUser}

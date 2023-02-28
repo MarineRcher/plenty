@@ -7,6 +7,9 @@ import HomePage from './view/HomePage';
 import FormProduct from "./view/FormProduct";
 import DisplayProducts from "./view/DisplayProducts";
 import Search from "./view/Search";
+import SignIn from "./view/SignIn";
+import SignUp from "./view/SignUp";
+import ResetPassword from "./view/ResetPassword";
 
 //Header Footer
 import Footer from "./component/Footer";
@@ -22,6 +25,9 @@ export default function App() {
           <Route exact path="/products/#fruitNvegetable" element={<DisplayProducts />} />
           <Route exact path="/products/#meat" element={<DisplayProducts />} />
           <Route exact path="/products/#divers" element={<DisplayProducts />} />
+          <Route exact path="/connexion" element={<SignIn />} />
+          <Route exact path="/connexion/inscription" element={<SignUp />} />
+          <Route exact path="/connexion/resetpassword" element={<ResetPassword />} />
           <Route exact path="/search" element={<Search />} />
         </Routes>
       </View>
@@ -33,7 +39,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#F9FBFC',
     alignItems: 'center',
     justifyContent: 'center',
     padding: 10
