@@ -42,7 +42,7 @@ const SignUp = () => {
                     value={username}
                     setValue={setUsername}
                 />
-                  <CustomInput
+                <CustomInput
                     placeholder="Email"
                     value={email}
                     setValue={setEmail}
@@ -71,7 +71,7 @@ const SignUp = () => {
                     onPress={onSignInGoogle}
                 />
 
-                
+
             </View>
         </ScrollView>
     );
@@ -85,10 +85,10 @@ const styles = StyleSheet.create({
     },
 
     title: {
-       fontSize: 24,
-       fontWeight: 'bold',
-       color: 'black',
-       margin: 10,
+        fontSize: 24,
+        fontWeight: 'bold',
+        color: 'black',
+        margin: 10,
     },
 
 

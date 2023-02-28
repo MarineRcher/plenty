@@ -61,7 +61,11 @@ export default function DisplayProducts(props) {
                         name={product.name}
                         store={product.store}
                         price={product.price}
+<<<<<<< HEAD
                         getProducts={getProducts()}
+=======
+                    //getProducts={getProducts()}
+>>>>>>> 6a94ba138b39548912f0992210df08dcce609243
                     />
                 ) : (
                     selectedTags.map((tag, key) => {
@@ -73,7 +77,11 @@ export default function DisplayProducts(props) {
                                 name={product.name}
                                 store={product.store}
                                 price={product.price}
+<<<<<<< HEAD
                                 getProducts={getProducts()}
+=======
+                            //getProducts={getProducts()}
+>>>>>>> 6a94ba138b39548912f0992210df08dcce609243
                             />
                         ) : null
 
